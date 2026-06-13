@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 services:
   db:
     image: mysql:8
@@ -34,4 +35,42 @@ services:
       - api
 
 volumes:
+=======
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./api/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build: ./api
+    ports:
+      - "3001:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: mydb
+    depends_on:
+      - db
+
+  web:
+    build: ./web
+    ports:
+      - "8001:8000"
+    environment:
+      API_BASE_URL: http://api:3000
+    depends_on:
+      - api
+
+volumes:
+>>>>>>> 21b8c25215af40d5fb9ac3e7d7312aed9301b74b
   db_data:

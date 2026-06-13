@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 Django==5.0
+=======
+Django==5.0
+>>>>>>> 21b8c25215af40d5fb9ac3e7d7312aed9301b74b
 requests==2.31.0
